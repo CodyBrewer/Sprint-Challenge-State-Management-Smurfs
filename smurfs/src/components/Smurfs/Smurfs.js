@@ -39,7 +39,7 @@ const Smurf = props => {
     <>
       <h2>{smurf.name}</h2>
       <p>Age: {smurf.age} years</p>
-      <p>Height: {smurf.height}</p>
+      <p>Height: {smurf.height}cm</p>
       <button
         onClick={e => {
           e.preventDefault();

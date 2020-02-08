@@ -2,8 +2,8 @@ import { ON_INPUT_CHANGE, ADD_SMURF_SUCCESS } from "../actions/types";
 
 const initialState = {
   name: "",
-  age: 0,
-  height: 0
+  age: "",
+  height: ""
 };
 
 export default (state = initialState, action) => {
