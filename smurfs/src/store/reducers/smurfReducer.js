@@ -1,7 +1,8 @@
 import {
   FETCH_SMURFS,
   FETCH_SMURFS_SUCCESS,
-  FETCH_SMURFS_FAILURE
+  FETCH_SMURFS_FAILURE,
+  ADD_SMURF
 } from "../actions/types";
 
 const initialState = {
@@ -26,6 +27,11 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: false,
         error: action.payload
+      };
+    case ADD_SMURF:
+      return {
+        ...state,
+        smurfs: action.payload
       };
     default:
       return state;
