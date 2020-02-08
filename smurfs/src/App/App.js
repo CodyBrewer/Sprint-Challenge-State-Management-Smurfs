@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import {Switch, Route} from 'react-router-dom'
-import Routes from './Routes'
+import { Switch, Route } from "react-router-dom";
+import Routes from "./Routes";
 
-class App extends Component {
-  render() {
-    return <div className="App"></div>;
-  }
-}
+const App = () => {
+  return (
+    <Switch>
+      {Routes.map(route => (
+        <Route path to={route.path} component={route.component} />
+      ))}
+    </Switch>
+  );
+};
 
 export default App;
