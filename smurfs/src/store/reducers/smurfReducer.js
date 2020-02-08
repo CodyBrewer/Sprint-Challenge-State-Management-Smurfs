@@ -2,7 +2,8 @@ import {
   FETCH_SMURFS,
   FETCH_SMURFS_SUCCESS,
   FETCH_SMURFS_FAILURE,
-  ADD_SMURF
+  ADD_SMURF,
+  DELETE_SMURF
 } from "../actions/types";
 
 const initialState = {
@@ -29,6 +30,11 @@ export default (state = initialState, action) => {
         error: action.payload
       };
     case ADD_SMURF:
+      return {
+        ...state,
+        smurfs: action.payload
+      };
+    case DELETE_SMURF:
       return {
         ...state,
         smurfs: action.payload

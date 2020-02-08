@@ -6,7 +6,8 @@ import {
   ADD_SMURF,
   ADD_SMURF_SUCCESS,
   ADD_SMURF_FAILURE,
-  ON_INPUT_CHANGE
+  ON_INPUT_CHANGE,
+  DELETE_SMURF
 } from "./types";
 
 export const fetchSmurfs = () => dispatch => {
@@ -42,4 +43,19 @@ export const changeInput = target => {
       value: target.value
     }
   };
+};
+
+export const deleteSmurf = id => dispatch => {
+  console.log(`helloe from deleteSmurf action`);
+  axios
+    .delete(`http://localhost:3333/smurfs/${id}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_SMURF,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
 };

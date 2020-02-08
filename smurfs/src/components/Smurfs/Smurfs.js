@@ -1,6 +1,11 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSmurfs, addSmurf, changeInput } from "../../store/actions";
+import {
+  fetchSmurfs,
+  addSmurf,
+  changeInput,
+  deleteSmurf
+} from "../../store/actions";
 
 const Smurfs = () => {
   const dispatch = useDispatch();
@@ -24,12 +29,25 @@ const Smurfs = () => {
 
 const Smurf = props => {
   const { smurf } = props;
+  const dispatch = useDispatch();
+
+  const deleteThis = id => {
+    dispatch(deleteSmurf(id));
+  };
 
   return (
     <>
       <h2>{smurf.name}</h2>
       <p>Age: {smurf.age} years</p>
       <p>Height: {smurf.height}</p>
+      <button
+        onClick={e => {
+          e.preventDefault();
+          deleteThis(smurf.id);
+        }}
+      >
+        Delete
+      </button>
     </>
   );
 };

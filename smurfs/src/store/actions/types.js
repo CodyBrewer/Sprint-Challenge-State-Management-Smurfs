@@ -5,3 +5,4 @@ export const ADD_SMURF = "ADD_SMURF";
 export const ADD_SMURF_SUCCESS = "ADD_SMURF_SUCCES";
 export const ADD_SMURF_FAILURE = "ADD_SMURF_FAILURE";
 export const ON_INPUT_CHANGE = "ON_INPUT_CHANGE";
+export const DELETE_SMURF = "DELETE_SMURF";
