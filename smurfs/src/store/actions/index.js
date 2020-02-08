@@ -24,24 +24,14 @@ export const fetchSmurfs = () => dispatch => {
 export const addSmurf = ({ name, age, height }) => dispatch => {
   console.log(name, age, height);
   axios
-    .post(`https://localhost:3333/smurfs`, { name, age, height })
+    .post(`http://localhost:3333/smurfs`, { name, age, height })
     .then(res => {
-      dispatch(addSmurfSuccess(res.data));
+      dispatch({ type: ADD_SMURF, payload: res.data });
+      dispatch({ type: ADD_SMURF_SUCCESS });
     })
     .catch(error =>
       dispatch({ type: ADD_SMURF_FAILURE, payload: error.message })
     );
-};
-
-export const addSmurfSuccess = data => {
-  return {
-    type: ADD_SMURF,
-    payload: {
-      name: data.name,
-      age: data.age,
-      height: data.height
-    }
-  };
 };
 
 export const changeInput = target => {

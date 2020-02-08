@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSmurfs, addSmurf } from "../../store/actions";
+import { fetchSmurfs, addSmurf, changeInput } from "../../store/actions";
 
 const Smurfs = () => {
   const dispatch = useDispatch();
@@ -36,21 +36,20 @@ const Smurf = props => {
 
 const SmurfForm = () => {
   const dispatch = useDispatch();
-  const [smurfInfo, setSmurfInfo] = useState({ name: "", age: 0, height: 0 });
-  const submitSmurf = e => data => {
-    e.preventDefault();
-
-    dispatch(addSmurf(data));
-  };
+  const { name, age, height } = useSelector(state => state.formData);
 
   const onChange = e => {
-    setSmurfInfo({ ...smurfInfo, [e.target.name]: e.target.value });
+    dispatch(changeInput(e.target));
+  };
+  const submitSmurf = ({ name, age, height }) => {
+    dispatch(addSmurf({ name, age, height }));
   };
 
   return (
     <form
-      onSubmit={() => {
-        submitSmurf(smurfInfo);
+      onSubmit={e => {
+        e.preventDefault();
+        submitSmurf({ name, age, height });
       }}
     >
       <input
@@ -58,7 +57,7 @@ const SmurfForm = () => {
         name="name"
         id="name"
         placeholder="Name of Smurf"
-        value={smurfInfo.name}
+        value={name}
         onChange={onChange}
       />
       <input
@@ -66,7 +65,7 @@ const SmurfForm = () => {
         name="age"
         id="age"
         placeholder="Age of Smurf in years"
-        value={smurfInfo.age}
+        value={age}
         onChange={onChange}
       />
       <input
@@ -75,7 +74,7 @@ const SmurfForm = () => {
         id=""
         placeholder="Height of Smurf in cm
         "
-        value={smurfInfo.height}
+        value={height}
         onChange={onChange}
       />
       <button type="submit">Add Smurf!</button>

@@ -12,7 +12,9 @@ export default (state = initialState, action) => {
       return { ...state, [action.payload.name]: action.payload.value };
     case ADD_SMURF_SUCCESS: {
       return {
-        ...initialState
+        name: "",
+        age: 0,
+        height: 0
       };
     }
     default:
